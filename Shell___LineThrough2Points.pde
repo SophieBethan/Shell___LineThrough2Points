@@ -45,7 +45,7 @@ void draw(){
   drawLine();
   if(showAnswers){
     textAlign(LEFT);
-    text("y="+String.format("%.2f",m)+"x+"+String.format("%.2f",c),10,30);
+    text("y="+String.format("%.2f",m)+"x+"+String.format("%.2f",c),20,30);
     // add more text display code here. It will all toggle visibility when you press "a"
   }
 }
@@ -66,13 +66,23 @@ c=y1-m*x1;
   // across the whole width of the screen
   
   line(xCartesianToPix(x1), yCartesianToPix(y1), xCartesianToPix(x2), yCartesianToPix(y2));
-  float xx = (x1+x2);
-  float yy = (y1+y2);
+  //distance variables (done how the formula does it...)
+  float xx = (x1-x2);
+  float yy = (y1-y2);
+  //doing x squared, and y squared here, for the formula
   float dd = (xx*xx)+(yy*yy);
+  //final distance, getting the square root.
   float d = sqrt(dd);
+  //get x intercept, as y-int will always = c
+  float xint = -c/m;
   
+  if(showAnswers){
     textAlign(LEFT);
-  text("distance="+String.format("%.2f",d), 20, 60);
+    text("distance="+String.format("%.2f",d), 20, 60);
+    text("Y-Intercept="+String.format("%.2f",c), 20, 90);
+    text("X-Intercept="+String.format("%.2f",xint), 20, 120);
+  }
+  
 }
 
 float xPixToCartesian(int xPix){  // returns the x cartesian coordinate for a given horizontal reference in pixels
